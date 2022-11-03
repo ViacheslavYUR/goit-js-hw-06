@@ -22,22 +22,14 @@ const images = [
   },
 ];
 
-const testMasive = [];
-const galaryImages = document.querySelector(".galary");
+const galleryImages = document.querySelector(".gallery");
 
-const arrTest = images.map((item) => {});
-// const itemListEl = document.createElement("li");
+const imageArryEl = images
+  .map(
+    (image) =>
+      `<li><img class = "gallery__img" src ='${image.url}' alt ='${image.alt}'/></li>`
+  )
+  .join("");
 
-// const itemImgRef = images.forEach((i) => {
-//   const itemImageRef = document.createElement("img");
-//   itemImageRef.src = i.url;
-//   itemImageRef.alt = i.alt;
-//   // itemListEl.insertAdjacentHTML("afterbegin", itemImageRef);
-//   testMasive.push(itemImageRef);
-// });
-
-// console.log(itemListEl);
-console.log(testMasive);
-
-// // console.log(itemListEl);
-// galaryImages.append(...testMasive);
+console.log(imageArryEl);
+galleryImages.insertAdjacentHTML("beforeend", imageArryEl);

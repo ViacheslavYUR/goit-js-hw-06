@@ -5,18 +5,13 @@
 // <input type="text" id="name-input" placeholder="Please enter your name" />
 // <h1>Hello, <span id="name-output">Anonymous</span>!</h1>
 
-const nameForm = {
-  inputName: document.querySelector("#name-input"),
-  outputName: document.querySelector("#name-output"),
-};
+const inputName = document.querySelector("#name-input");
+const outputName = document.querySelector("#name-output");
 
-nameForm.inputName.addEventListener("input", onInputName);
-
-function onInputName(elem) {
-  console.log(elem.currentTarget.value);
-  nameForm.outputName.textContent =
-    elem.currentTarget.value.trim() !== ""
-      ? elem.currentTarget.value
-      : "Anonymous";
-}
-// console.log(nameForm.inputName);
+inputName.addEventListener("input", (event) => {
+  if (event.currentTarget.value) {
+    outputName.textContent = event.currentTarget.value;
+  } else {
+    outputName.textContent = "Anonymous";
+  }
+});
