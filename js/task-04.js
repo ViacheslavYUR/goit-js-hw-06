@@ -13,42 +13,24 @@
 //  або зменшуй значення лічильника.
 // Оновлюй інтерфейс новим значенням змінної counterValue.
 
-const counterPlugin = function ({ rootSelector, step = 1, initial = 0 } = {}) {
-  this.value = initial;
-  this.step = step;
-  this.refs = this.getRefs(rootSelector);
-  this.bindEvent();
-};
+const counterRef ={
+  span : document.querySelector('#value'),
+  btnDecrement : document.querySelector('[data-action="decrement"]'),
+  btnIncrement : document.querySelector('[data-action="increment"]')
+}
+counterRef.btnDecrement.addEventListener('click', onDecrementBtn)
+counterRef.btnIncrement.addEventListener('click', onIncrementBtn)
 
-counterPlugin.prototype.decrement = function () {
-  this.value -= 1;
-};
 
-counterPlugin.prototype.increment = function () {
-  this.value += 1;
-};
+function onDecrementBtn () {
+  counterRef.span.textContent -= 1;
+  // console.log(counterRef.span.textContent);
 
-counterPlugin.prototype.getRefs = function (rootSelector) {
-  const refs = {};
-  refs.container = document.querySelector(rootSelector);
-  refs.decrementBtn = refs.container.querySelector('[data-action="decrement"]');
-  refs.incremetBtn = refs.container.querySelector('[data-action="increment"]');
-  refs.value = refs.container.querySelector("#value");
+}
 
-  return refs;
-};
-counterPlugin.prototype.bindEvent = function () {
-  this.refs.decrementBtn.addEventListener("click", () => {
-    this.decrement();
-    this.updateValue();
-  });
-  this.refs.incremetBtn.addEventListener("click", () => {
-    this.increment();
-    this.updateValue();
-  });
-};
-counterPlugin.prototype.updateValue = function () {
-  this.refs.value.textContent = this.value;
-};
+function onIncrementBtn () {
+  counterRef.span.textContent = Number(counterRef.span.textContent) + 1;
+  // console.log(counterRef.span.textContent);
 
-new counterPlugin({ rootSelector: "#counter", step: 1, initial: 0 });
+}
+
